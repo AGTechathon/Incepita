@@ -10,7 +10,7 @@ const GeneratePaper = () => {
 
     const navigate = useNavigate();
     const { username } = useParams();
-
+    
 
     useEffect(() => {
         const storedUser = localStorage.getItem("username");
