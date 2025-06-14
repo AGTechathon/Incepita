@@ -6,7 +6,7 @@ import Sidebar from './components/sidebar/Sidebar.jsx';
 import GeneratePaper from "./components/generatepaper/GeneratePaper.jsx";
 import QuestionPapers from './components/questionPapers/QuestionPapers.jsx';
 import Homepage from "./components/homepage/Homepage.jsx";
-
+import SingleQuestion from "./components/singlequestion/SingleQuestion.jsx" 
 function App() {
   const location = useLocation();
   const shownav = ['/', '/login', '/register'];
@@ -22,7 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/:username/generatepaper" element={<GeneratePaper />} />
         <Route path="/:username/papers" element={<QuestionPapers />} />
-
+        <Route path="/:username/papers/:questionPaperId/:targetVersion"  element={ <SingleQuestion /> }/>
         {/* Optional future routes */}
         <Route path="/QuestionPapers" element={<QuestionPapers />} />
         <Route path="/generatepaper" element={<GeneratePaper />} />

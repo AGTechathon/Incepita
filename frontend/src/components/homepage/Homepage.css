@@ -1,5 +1,5 @@
 /* Background and Layout */
-.homepage-container {
+/* .homepage-container {
   height: 100vh;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   display: flex;
@@ -10,6 +10,29 @@
   color: #fff;
   text-align: center;
   overflow: hidden;
+} */
+
+.homepage-container {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(120deg, #0a0f33, #0f1e47);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=1050&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  z-index: 1;
 }
 
 /* Hero Text */
@@ -80,11 +103,55 @@
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 5;
 }
 
 .btn-secondary:hover {
   background: rgba(0, 212, 255, 0.1);
 }
+
+.button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button,
+.secondary-button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button {
+  background: linear-gradient(to right, #00ffe0, #4e9fff);
+  color: #0a0f33;
+  box-shadow: 0 8px 20px rgba(0, 255, 224, 0.3);
+}
+
+.cta-button:hover {
+  background: linear-gradient(to right, #00d6b3, #3e8fff);
+  box-shadow: 0 8px 28px rgba(0, 255, 224, 0.5);
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  background: transparent;
+  border: 2px solid #00ffe0;
+  color: #00ffe0;
+}
+
+.secondary-button:hover {
+  background: #00ffe0;
+  color: #0a0f33;
+  transform: translateY(-2px);
+}
+Add comment
 
 /* Responsive */
 @media (max-width: 768px) {

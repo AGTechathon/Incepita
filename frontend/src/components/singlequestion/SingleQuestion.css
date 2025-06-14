@@ -1,0 +1,122 @@
+.singlequestion-wrapper {
+  max-width: 700px;
+  margin: auto auto;
+  padding: 10px;
+}
+
+.singlequestion-container {
+  display: flex;
+  align-items: flex-start;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.singlequestion-container:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.mypaper-input {
+  flex-grow: 1;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mypaper-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  outline: none;
+}
+
+.singlequestion-dropdown {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 10px;
+
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.singlequestion-dropdown:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+.singlequestion-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.singlequestion-action-btn {
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.singlequestion-action-btn:hover {
+  background: #4f46e5;
+}
+
+.singlequestion-action-btn:last-child {
+  margin-bottom: 0;
+}
+
+
+.paper-name-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: stretch;
+    align-content: flex-start;
+    justify-content: space-between;
+}
+
+.paper-name-container > div{
+  margin-right: 50px;
+}
+
+.paper-name-container label {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+
+.paper-name-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+
+.delete-paper-btn {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.delete-paper-btn:hover {
+  background-color: #c62828;
+}

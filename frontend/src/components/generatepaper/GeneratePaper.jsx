@@ -111,7 +111,8 @@ const GeneratePaper = () => {
       }
 
       const result = await response.json();
-      console.log("Paper generated:", result);
+      const questionPaperId = result.questionPaperId;
+      navigate(`/${username}/papers/${questionPaperId}/1`);
     } catch (err) {
       console.error("Error generating paper:", err.message);
       setError("Failed to generate paper. " + err.message);
