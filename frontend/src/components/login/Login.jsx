@@ -1,11 +1,12 @@
 import { useState } from "react";
-import './Login.css'; // Optional if you want external styles
+import './Login.css'; 
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(""); // For showing login error
+  const [loginError, setLoginError] = useState(""); 
+  
 
   async function loginUser(username, password) {
     let url = `http://localhost:8080/api/auth/login`;
@@ -53,11 +54,10 @@ const handleSubmit = async (e) => {
     const result = await loginUser(email, password);
     const username = result.user.username;
 
-    // Save login info
     localStorage.setItem("token", result.token);
     localStorage.setItem("username", username);
 
-    // ✅ Redirect to /username/generatepaper
+   
     navigate(`/${username}/generatepaper`);
   } catch (err) {
     setLoginError(err.message);

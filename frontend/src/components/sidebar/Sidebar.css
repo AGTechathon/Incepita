@@ -26,6 +26,22 @@
   gap: 15px;
 }
 
+.sidebar-brand {
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  padding: 5px 0;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+
 .sidebar-link {
   color: #ccc;
   text-decoration: none;

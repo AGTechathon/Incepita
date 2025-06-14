@@ -6,12 +6,9 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div>
-        
         <nav className="sidebar-nav">
-            
-        <Link to="/" className="sidebar-brand">NextGenpaper</Link>
-
-          <Link to="/mypaper"  className="sidebar-link">MyPaper</Link>
+          <Link to="/" className="sidebar-brand">NextGenPaper</Link>
+          <Link to="/mypaper" className="sidebar-link">MyPaper</Link>
           <Link to="/generate" className="sidebar-link">Generate</Link>
         </nav>
       </div>
