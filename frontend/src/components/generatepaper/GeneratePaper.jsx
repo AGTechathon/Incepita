@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import "./GeneratePaper.css";
-import Sidebar from "../sidebar/Sidebar.jsx";
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import './GeneratePaper.css';
+import Sidebar from '../sidebar/Sidebar.jsx';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const bloomLevels = [
   "Remember",
@@ -29,28 +28,7 @@ const GeneratePaper = () => {
   const [curriculumFile, setCurriculumFile] = useState(null);
   const [paperFormatFile, setPaperFormatFile] = useState(null);
   const [weights, setWeights] = useState(Array(6).fill(0));
-  const [error, setError] = useState("");
-
-  async function ask(request, curriculumFile, questionFormat) {
-    let url = `http://localhost/api/generate/paper`;
-
-    let headers = {
-      "Content-Type": "multipart/form-data",
-    };
-
-    let body = {
-      request,
-      curriculumFile,
-      questionFormat,
-    };
-
-    let response = await fetch(url, {
-      method: "POST",
-      headers: headers,
-      body: body,
-    });
-    console.log(response.status);
-  }
+  const [error, setError] = useState('');
 
   const handleFileChange = (e, setFile) => {
     const file = e.target.files[0];
@@ -84,64 +62,61 @@ const GeneratePaper = () => {
     setWeights(newWeights);
   };
 
-const handleClickEvent = async (e) => {
-  e.preventDefault();
+  const handleClickEvent = async (e) => {
+    e.preventDefault();
 
-  if (!curriculumFile || !paperFormatFile) {
-    setError("Please upload both Curriculum and Paper Format files.");
-    return;
-  }
-
-  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
-  if (totalWeight !== 100) {
-    setError("Total weightage must be exactly 100%.");
-    return;
-  }
-
-  const formData = new FormData();
-  const token = localStorage.getItem("token");
-  const username = localStorage.getItem("username");
-
-  formData.append("curriculumFile", curriculumFile);
-  formData.append("questionFormat", paperFormatFile);
-
-  // Add the JSON part as a Blob
-  const requestPayload = {
-    bloomWeights: weights,
-    username: username,
-    // add other fields if QuestionPaperRequest has more
-  };
-
-  formData.append(
-    "request",
-    new Blob([JSON.stringify(requestPayload)], {
-      type: "application/json",
-    })
-  );
-
-  try {
-    const response = await fetch("http://localhost:8080/api/generate/paper", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`, // ✅ Include token for authentication
-        // ❌ DO NOT set 'Content-Type' manually when using FormData
-      },
-      body: formData,
-      credentials: "include"
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Server error: ${errorText}`);
+    if (!curriculumFile || !paperFormatFile) {
+      setError("Please upload both Curriculum and Paper Format files.");
+      return;
     }
 
-    const result = await response.json(); // or response.blob() if PDF
-    console.log("Paper generated:", result);
-  } catch (err) {
-    console.error("Error generating paper:", err.message);
-    setError("Failed to generate paper. " + err.message);
-  }
-};
+    const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+    if (totalWeight !== 100) {
+      setError("Total weightage must be exactly 100%.");
+      return;
+    }
+
+    const formData = new FormData();
+    const token = localStorage.getItem("token");
+    const storedUsername = localStorage.getItem("username");
+
+    formData.append("curriculumFile", curriculumFile);
+    formData.append("questionFormat", paperFormatFile);
+
+    const requestPayload = {
+      bloomWeights: weights,
+      username: storedUsername,
+    };
+
+    formData.append(
+      "request",
+      new Blob([JSON.stringify(requestPayload)], {
+        type: "application/json",
+      })
+    );
+
+    try {
+      const response = await fetch("http://localhost:8080/api/generate/paper", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Server error: ${errorText}`);
+      }
+
+      const result = await response.json();
+      console.log("Paper generated:", result);
+    } catch (err) {
+      console.error("Error generating paper:", err.message);
+      setError("Failed to generate paper. " + err.message);
+    }
+  };
 
   return (
     <div className="page-wrapper">
@@ -186,9 +161,7 @@ const handleClickEvent = async (e) => {
                       min="0"
                       max="100"
                       value={weights[index]}
-                      onChange={(e) =>
-                        handleWeightChange(index, e.target.value)
-                      }
+                      onChange={(e) => handleWeightChange(index, e.target.value)}
                     />
                   </td>
                 </tr>
