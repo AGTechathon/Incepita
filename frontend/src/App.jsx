@@ -1,34 +1,33 @@
-import Navbar from "./components/navbar/Navbar"
-import { Link } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import Navbar from "./components/navbar/Navbar";
 import Login from './components/login/Login.jsx';
 import Register from "./components/register/Register.jsx";
 import Sidebar from './components/sidebar/Sidebar.jsx';
-import { useLocation } from "react-router-dom";
+import Homepage from './components/homepage/Homepage.jsx';
 
 function App() {
-  
-  const location = useLocation()
-  const hideside = ['/login' , '/register' , "/" ]
-  const shouldShowNavbar = !hideside.includes(location.pathname);
-  return(
-     <>
-      <Navbar />
-      {shouldShowNavbar && <Sidebar/> }
-      
-      <div>
+  const location = useLocation();
+  const hideSidebarRoutes = ['/login', '/register', '/'];
 
-      
-      </div>
-      
+  const shouldShowSidebar = !hideSidebarRoutes.includes(location.pathname);
+  // const shouldShowNavbar = location.pathname !== '/';
+
+  return (
+    <>
+      <Navbar />
+      {/* {shouldShowNavbar && <Navbar />} */}
+      {shouldShowSidebar && <Sidebar />}
+
       <Routes>
-        {/* <Route path="/mypaper" element={<MyPaper />} />
-        <Route path="/generate" element={<Generate />} /> */}
+        <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        {/* <Route path="/mypaper" element={<MyPaper />} />
+        <Route path="/generate" element={<Generate />} /> */}
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
