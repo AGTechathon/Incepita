@@ -9,6 +9,9 @@ const Register = () => {
     email: '',
   });
 
+  const [registerError, setRegisterError] = useState('');
+  const [registerSuccess, setRegisterSuccess] = useState('');
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -16,9 +19,46 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  async function registerUser({ username, password, email, fullname }) {
+    const url = `http://localhost:8080/api/auth/register`;
+
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    const body = {
+      username,
+      password,
+      email,
+      fullName: fullname,
+    };
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      throw new Error(errorBody || 'Registration failed.');
+    }
+
+    return await response.text(); // Assuming the server returns a plain success message
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Registered user:', formData);
+    setRegisterError('');
+    setRegisterSuccess('');
+
+    try {
+      const result = await registerUser(formData);
+      setRegisterSuccess(result || 'Registered successfully!');
+      setFormData({ username: '', password: '', fullname: '', email: '' });
+    } catch (error) {
+      setRegisterError(error.message);
+    }
   };
 
   return (
@@ -28,28 +68,19 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="register-form">
           <input
             type="text"
-            name="username"
-            placeholder="Username"
+            name="fullname"
+            placeholder="Full Name"
             className="register-input"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            className="register-input"
-            value={formData.password}
+            value={formData.fullname}
             onChange={handleChange}
             required
           />
           <input
             type="text"
-            name="fullname"
-            placeholder="Full Name"
+            name="username"
+            placeholder="Username"
             className="register-input"
-            value={formData.fullname}
+            value={formData.username}
             onChange={handleChange}
             required
           />
@@ -62,10 +93,22 @@ const Register = () => {
             onChange={handleChange}
             required
           />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="register-input"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
           <button type="submit" className="register-button">
             Register
           </button>
         </form>
+
+        {registerError && <p className="error-msg">{registerError}</p>}
+        {registerSuccess && <p className="success-msg">{registerSuccess}</p>}
       </div>
     </div>
   );

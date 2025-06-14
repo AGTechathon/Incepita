@@ -1,10 +1,10 @@
 import { useState } from "react";
-import './Login.css'; 
+import './Login.css'; // Optional if you want external styles
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(""); // 🆕 for showing error
+  const [loginError, setLoginError] = useState(""); // For showing login error
 
   async function loginUser(username, password) {
     let url = `http://localhost:8080/api/auth/login`;
@@ -25,10 +25,10 @@ const Login = () => {
         body: JSON.stringify(body),
       });
 
-      console.log(response.status); // should print 200
+      console.log("Response status:", response.status);
 
       if (!response.ok) {
-        const errorBody = await response.text(); // Optional: inspect error
+        const errorText = await response.text();
         throw new Error("Invalid username or password.");
       }
 
@@ -38,53 +38,21 @@ const Login = () => {
       return data;
     } catch (error) {
       console.error("Error during login:", error);
-      throw error; 
+      throw error;
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
-
-  return (
-    <div className="login-page">
-      <div className="login-container">
-        <h2 className="login-title">Login</h2>
-        <form onSubmit={handleSubmit} className="login-form">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="login-input"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="login-input"
-          />
-          <button type="submit" className="login-button">
-            Login
-          </button>
-        </form>
-      </div>
-=======
-    setLoginError(""); 
+    setLoginError(""); // Clear any previous error
 
     try {
       const result = await loginUser(email, password);
       console.log("Login successful", result);
 
-      // You can redirect or set global state here
+      // Redirect or set global state here
     } catch (err) {
-      setLoginError(err.message); // show error message
+      setLoginError(err.message);
     }
   };
 
@@ -113,28 +81,24 @@ const Login = () => {
         </button>
       </form>
 
-      {/* 🆕 Error message display */}
       {loginError && (
         <div style={styles.error}>
           {loginError}
         </div>
       )}
->>>>>>> 4b4d28e (BE: Implemented user Authentication)
     </div>
   );
 };
 
-<<<<<<< HEAD
-=======
 const styles = {
   container: {
-    maxWidth: "400px",
+    width: "370px",
     margin: "50px auto",
-    padding: "2rem",
-    border: "1px solid #ccc",
-    borderRadius: "10px",
+    padding: "30px",
     textAlign: "center",
+    borderRadius: "12px",
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    backgroundColor: "#1e1e1e"
   },
   form: {
     display: "flex",
@@ -163,5 +127,4 @@ const styles = {
   },
 };
 
->>>>>>> 4b4d28e (BE: Implemented user Authentication)
 export default Login;
