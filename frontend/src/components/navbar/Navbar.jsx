@@ -37,7 +37,8 @@ const styles = {
     color: '#fff',
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    
   },
   logo: {
     margin: 0

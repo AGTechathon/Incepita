@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './Login.css'; // Optional if you want external styles
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -42,19 +43,26 @@ const Login = () => {
     }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoginError(""); // Clear any previous error
+  const navigate = useNavigate();
 
-    try {
-      const result = await loginUser(email, password);
-      console.log("Login successful", result);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoginError("");
 
-      // Redirect or set global state here
-    } catch (err) {
-      setLoginError(err.message);
-    }
-  };
+  try {
+    const result = await loginUser(email, password);
+    const username = result.user.username;
+
+    // Save login info
+    localStorage.setItem("token", result.token);
+    localStorage.setItem("username", username);
+
+    // ✅ Redirect to /username/generatepaper
+    navigate(`/${username}/generatepaper`);
+  } catch (err) {
+    setLoginError(err.message);
+  }
+};
 
   return (
     <div style={styles.container}>
