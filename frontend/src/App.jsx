@@ -6,7 +6,7 @@ import Register from "./components/register/Register.jsx";
 import Sidebar from './components/sidebar/Sidebar.jsx';
 import { useLocation } from "react-router-dom";
 import GeneratePaper from "./components/generatepaper/GeneratePaper.jsx";
-
+import Homepage from "./components/homepage/Homepage.jsx"
 function App() {
   
   const location = useLocation()
@@ -21,6 +21,7 @@ function App() {
       
      
       <Routes>
+        <Route path="/" element={<Homepage />} />
         {/* <Route path="/mypaper" element={<MyPaper />} />
         <Route path="/generate" element={<Generate />} /> */}
         <Route path="/:username/generatepaper" element={<GeneratePaper />} />
