@@ -1,18 +1,17 @@
 import { useState } from "react";
-import './Login.css'; 
-import { useNavigate } from 'react-router-dom';
+import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(""); 
-  
+  const [loginError, setLoginError] = useState("");
 
   async function loginUser(username, password) {
     let url = `http://localhost:8080/api/auth/login`;
 
     let headers = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     };
 
     let body = {
@@ -22,12 +21,10 @@ const Login = () => {
 
     try {
       let response = await fetch(url, {
-        method: 'POST',
+        method: "POST",
         headers: headers,
         body: JSON.stringify(body),
       });
-
-      console.log("Response status:", response.status);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -46,23 +43,22 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoginError("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoginError("");
 
-  try {
-    const result = await loginUser(email, password);
-    const username = result.user.username;
+    try {
+      const result = await loginUser(email, password);
+      const username = result.user.username;
 
-    localStorage.setItem("token", result.token);
-    localStorage.setItem("username", username);
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("username", username);
 
-   
-    navigate(`/${username}/generatepaper`);
-  } catch (err) {
-    setLoginError(err.message);
-  }
-};
+      navigate(`/${username}/generatepaper`);
+    } catch (err) {
+      setLoginError(err.message);
+    }
+  };
 
   return (
     <div style={styles.container}>
@@ -89,11 +85,7 @@ const handleSubmit = async (e) => {
         </button>
       </form>
 
-      {loginError && (
-        <div style={styles.error}>
-          {loginError}
-        </div>
-      )}
+      {loginError && <div style={styles.error}>{loginError}</div>}
     </div>
   );
 };
@@ -106,7 +98,7 @@ const styles = {
     textAlign: "center",
     borderRadius: "12px",
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "#1e1e1e"
+    backgroundColor: "#1e1e1e",
   },
   form: {
     display: "flex",
