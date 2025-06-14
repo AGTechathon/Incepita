@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
 
-    const getUsername = () =>{
+    const getGenerateLink = () =>{
         return "/" + localStorage.getItem("username") + "/generatepaper";
+  }
+  
+      const getPaperLink = () =>{
+        return "/" + localStorage.getItem("username") + "/papers";
     }
 
   return (
@@ -13,8 +17,8 @@ const Sidebar = () => {
       <div>
         <nav className="sidebar-nav">
           <Link to="/" className="sidebar-brand">NextGenPaper</Link>
-          <Link to="/mypaper" className="sidebar-link">MyPaper</Link>
-          <Link to={getUsername()} className="sidebar-link">Generate</Link>
+          <Link to={getPaperLink()} className="sidebar-link">MyPaper</Link>
+          <Link to={getGenerateLink()} className="sidebar-link">Generate</Link>
         </nav>
       </div>
       <div className="sidebar-bottom">

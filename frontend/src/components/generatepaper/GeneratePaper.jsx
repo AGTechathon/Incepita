@@ -1,32 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './GeneratePaper.css';
 import Sidebar from '../sidebar/Sidebar.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const bloomLevels = ['Remember', 'Understand', 'Apply', 'Analyze', 'Evaluate', 'Create'];
 
 const GeneratePaper = () => {
-
     const navigate = useNavigate();
     const { username } = useParams();
-    
 
     useEffect(() => {
         const storedUser = localStorage.getItem("username");
         const token = localStorage.getItem("token");
 
-        if (!token || storedUser !== username) {
-            navigate("/login");
-        }
+        console.log("Stored Username:", storedUser);
+        console.log("URL Username Param:", username);
+        console.log("Token:", token);
     }, [username, navigate]);
-
 
     const [curriculumFile, setCurriculumFile] = useState(null);
     const [paperFormatFile, setPaperFormatFile] = useState(null);
     const [weights, setWeights] = useState(Array(6).fill(0));
     const [error, setError] = useState('');
-
 
     const handleFileChange = (e, setFile) => {
         const file = e.target.files[0];
@@ -62,7 +57,6 @@ const GeneratePaper = () => {
 
     return (
         <div className="page-wrapper">
-
             <Sidebar />
 
             <div className="generate-paper-container-with-sidebar">
@@ -117,8 +111,7 @@ const GeneratePaper = () => {
                         className="generate-button"
                         onClick={() => {
                             console.log("Generating paper...");
-                            
-                            
+                            // Add backend call or logic here
                         }}
                     >
                         Generate Paper

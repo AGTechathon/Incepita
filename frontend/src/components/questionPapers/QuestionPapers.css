@@ -1,0 +1,82 @@
+.question-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.papers-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.questionpapers-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: #000; /* optional for theme */
+  color: white;
+}
+
+.questionpapers-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.papers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.paper-card {
+  background: #f1f1f1;
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.paper-card:hover {
+  transform: scale(1.03);
+}
+
+.paper-card {
+  width: 220px;
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.paper-card:hover {
+  transform: translateY(-5px);
+}
+
+.paper-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.paper-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.paper-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.paper-card a:hover {
+  text-decoration: underline;
+}
