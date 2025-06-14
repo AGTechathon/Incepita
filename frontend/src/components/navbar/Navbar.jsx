@@ -1,8 +1,10 @@
 // src/components/Navbar.jsx
 import { Link } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 import Button from '../button/Button.jsx';
 import Login from '../login/Login.jsx';
-import { Routes, Route } from "react-router-dom";
+import Register from '../register/Register.jsx';
+
 
 
 
@@ -19,7 +21,7 @@ const Navbar = () => {
           <Button text="Login" />
         </Link>
 
-        <Link to="/contact" style={styles.link}>
+        <Link to="/register" style={styles.link}>
           <Button text="Register" />
         </Link>
 
