@@ -13,6 +13,7 @@ const bloomLevels = [
 ];
 
 const GeneratePaper = () => {
+
   const navigate = useNavigate();
   const { username } = useParams();
 

@@ -1,69 +1,95 @@
-/* Register.css */
-
-
+/* Register Page */
 .register-page {
   display: flex;
   justify-content: center;
-  /* align-items: center;
-  min-height: 100vh; */
-  background-color: #000;
-}
-.error-msg {
-  color: red;
-  margin-top: 1rem;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #000000, #0c0f1a);
+  padding: 40px 0;
 }
 
-.success-msg {
-  color: green;
-  margin-top: 1rem;
-}
-
+/* Container with Glassmorphism */
 .register-container {
-  width: 370px;
-  margin: 50px auto;
-  background-color: #1e1e1e;
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid #444;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  width: 400px;
+  padding: 35px 30px;
+  border-radius: 16px;
+  background: rgba(18, 22, 38, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  color: #fff;
 }
 
+/* Title */
 .register-title {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #00ffe0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
 }
 
+/* Form layout */
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 
+/* Input fields */
 .register-input {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #555;
-  background-color: #2a2a2a;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  background: rgba(44, 51, 72, 0.6);
   color: #fff;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .register-input::placeholder {
-  color: #aaa;
+  color: #a3b9cc;
 }
 
+.register-input:focus {
+  outline: none;
+  border-color: #00ffe0;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+/* Register button */
 .register-button {
   padding: 12px;
-  background-color: #2563eb;
-  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #fff;
   font-weight: bold;
+  font-size: 15px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .register-button:hover {
-  background-color: #1e40af;
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+}
+
+/* Success and error messages */
+.success-msg {
+  margin-top: 15px;
+  color: #00ff88;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(0, 255, 136, 0.6);
+}
+
+.error-msg {
+  margin-top: 15px;
+  color: #ff5b5b;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(255, 91, 91, 0.6);
 }

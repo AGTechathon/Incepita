@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState, version } from "react";
 import "./SingleQuestion.css";
 import Sidebar from "../sidebar/Sidebar";
+import { useNavigate } from 'react-router-dom';
+
 
 const bloomsLevels = [
   "Remember",
@@ -13,6 +15,9 @@ const bloomsLevels = [
 ];
 
 const SingleQuestion = () => {
+
+  useNavigate();
+
   const { username, questionPaperId, targetVersion } = useParams();
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
@@ -28,7 +33,6 @@ const SingleQuestion = () => {
         const response = await fetch(url, {
           method: "GET",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         });
@@ -84,8 +88,6 @@ const SingleQuestion = () => {
       if (!response.ok) {
         throw new Error("Failed to update paper name");
       }
-
-      console.log("Paper name updated successfully");
     } catch (error) {
       console.error("Error updating paper name:", error);
     }
@@ -120,20 +122,20 @@ const SingleQuestion = () => {
       throw new Error("Failed to regenerate question");
     }
 
-    const data = await response.json(); // expects { question, bloomlevel }
+    const data = await response.json(); 
+    // Navigate(`/${username}/papers/${questionPaperId}/${data.versionNo}`);
+    
     return data;
   }
 
   async function updateQuestion(payload) {
     let url = `http://localhost:8080/api/question/update`;
-    const token = localStorage.getItem("token");
-
     try {
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(payload),
       });
@@ -178,6 +180,7 @@ const SingleQuestion = () => {
       question: question.question,
       bloomLevel: question.bloomlevel,
     };
+    console.log("Saving question:", payload);
     await updateQuestion(payload);
   };
 

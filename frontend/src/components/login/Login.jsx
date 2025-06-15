@@ -6,42 +6,29 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+  const navigate = useNavigate();
 
   async function loginUser(username, password) {
-    let url = `http://localhost:8080/api/auth/login`;
-
-    let headers = {
-      "Content-Type": "application/json",
-    };
-
-    let body = {
-      username,
-      password,
-    };
-
     try {
-      let response = await fetch(url, {
+      const response = await fetch(`http://localhost:8080/api/auth/login`, {
         method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
         throw new Error("Invalid username or password.");
       }
 
-      let data = await response.json();
+      const data = await response.json();
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.user.username);
       return data;
     } catch (error) {
-      console.error("Error during login:", error);
+      console.error("Login error:", error);
       throw error;
     }
   }
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,82 +36,45 @@ const Login = () => {
 
     try {
       const result = await loginUser(email, password);
-      const username = result.user.username;
-
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("username", username);
-
-      navigate(`/${username}/generatepaper`);
+      navigate(`/${result.user.username}/generatepaper`);
     } catch (err) {
       setLoginError(err.message);
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <input
-          type="text"
-          placeholder="username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={styles.input}
-        />
-        <button type="submit" style={styles.button}>
-          Login
-        </button>
-      </form>
-
-      {loginError && <div style={styles.error}>{loginError}</div>}
+    <div className="login-page">
+      <div className="login-container">
+        <h2 className="login-title">Login</h2>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="login-input"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="login-input"
+            required
+          />
+          <button type="submit" className="login-button">
+            Login
+          </button>
+        </form>
+        {loginError && (
+          <div style={{ marginTop: "1rem", color: "red", fontWeight: "bold" }}>
+            {loginError}
+          </div>
+        )}
+      </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    width: "370px",
-    margin: "50px auto",
-    padding: "30px",
-    textAlign: "center",
-    borderRadius: "12px",
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "#1e1e1e",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-  },
-  input: {
-    padding: "10px",
-    fontSize: "16px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-  },
-  button: {
-    padding: "10px",
-    fontSize: "16px",
-    backgroundColor: "#007bff",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-  error: {
-    marginTop: "1rem",
-    color: "red",
-    fontWeight: "bold",
-  },
 };
 
 export default Login;

@@ -1,18 +1,25 @@
 // src/components/Button.jsx
 const Button = ({ text, onClick, type = "button", style = {} }) => {
-  const defaultStyle = {
-    padding: "10px 20px",
-    backgroundColor: "#007bff",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontSize: "16px",
-    
-  };
+ 
+
+  const buttonStyle = {
+  backgroundColor: "#6C63FF",
+  color: "#FFFFFF",
+  border: "none",
+  padding: "0.5rem 1rem",
+  borderRadius: "8px",
+  fontWeight: "bold",
+  cursor: "pointer",
+  transition: "background-color 0.3s",
+};
+
+const hoverStyle = {
+  backgroundColor: "#574FCF",
+};
+
 
   return (
-    <button type={type} onClick={onClick} style={defaultStyle}>
+    <button type={type} onClick={onClick} style={buttonStyle}>
       {text}
     </button>
   );

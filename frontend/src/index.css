@@ -13,6 +13,10 @@
   background-color: #1e1e1e;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /*
 a {
   font-weight: 500;

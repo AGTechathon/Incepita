@@ -6,11 +6,18 @@ const Sidebar = () => {
 
     const getGenerateLink = () =>{
         return "/" + localStorage.getItem("username") + "/generatepaper";
-  }
+  };
   
       const getPaperLink = () =>{
         return "/" + localStorage.getItem("username") + "/papers";
-    }
+    };
+
+
+    const doLogout = () => {
+        localStorage.removeItem("username");
+        localStorage.removeItem("token");
+        window.location.href = "/";
+    };
 
   return (
     <div className="sidebar">
@@ -22,7 +29,7 @@ const Sidebar = () => {
         </nav>
       </div>
       <div className="sidebar-bottom">
-        <button className="logout-button">Logout</button>
+        <button onClick={() => doLogout()} className="logout-button">Logout</button>
       </div>
     </div>
   );
