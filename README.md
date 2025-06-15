@@ -12,34 +12,13 @@
 - 🧾 Auto-paper generation (in progress)
 
 
-
-## 📂 Project Structure
-
-Inceptia/
-│
-├── backend/ # REST API server ( Spring Boot )
-├── frontend/ # React + Vite frontend
-│ ├── public/
-│ └── src/
-│ ├── components/
-│ │ ├── login/
-│ │ ├── register/
-│ │ ├── generatepaper/
-│ │ ├── sidebar/
-│ │ └── navbar/
-│ └── App.jsx
-└── README.md
-
-
 ## 🛠️ Tech Stack
 
  Frontend - React + vite 
  Backend - Java SpringBoot
 
 
-## 🔧 Setup Instructions
-
-### 📌 Prerequisites
+## 📌 Prerequisites
 
 - Node.js (v18+)
 - Java 17 
@@ -47,3 +26,8 @@ Inceptia/
 - npm
 - Maven
 
+
+## Used Tools
+ 1. SpringBoot : https://spring.io/
+ 2. React.js   : https://react.dev/
+ 3. Postman    : https://www.postman.com/ 
