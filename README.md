@@ -1,6 +1,6 @@
 # 📄 NextGenPaper
 
-> A smart question paper generation platform that streamlines curriculum analysis, Bloom's taxonomy weightage, and document management for educators.
+> An intelligent question paper generation platform that helps educators by automating curriculum analysis, aligning questions with Bloom’s Taxonomy levels, and simplifying document management..
 
 
 ## 🚀 Features
@@ -30,4 +30,4 @@
 ## Used Tools
  1. SpringBoot : https://spring.io/
  2. React.js   : https://react.dev/
- 3. Postman    : https://www.postman.com/ 
+ 3. Postman    : https://www.postman.com/
