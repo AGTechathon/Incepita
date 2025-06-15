@@ -3,14 +3,8 @@ import './GeneratePaper.css';
 import Sidebar from '../sidebar/Sidebar.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const bloomLevels = [
-  "Remember",
-  "Understand",
-  "Apply",
-  "Analyze",
-  "Evaluate",
-  "Create",
-];
+const bloomLevels = ['Remember', 'Understand', 'Apply', 'Analyze', 'Evaluate', 'Create'];
+
 
 const GeneratePaper = () => {
 
@@ -172,18 +166,15 @@ const GeneratePaper = () => {
           </table>
           {error && <p className="error-text">{error}</p>}
 
-          <button
-            className="generate-button"
-            onClick={(e) => {
-              handleClickEvent(e);
-            }}
-          >
-            Generate Paper
-          </button>
+                    <button
+                        className="generate-button" 
+                    >
+                        Generate Paper
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default GeneratePaper;
